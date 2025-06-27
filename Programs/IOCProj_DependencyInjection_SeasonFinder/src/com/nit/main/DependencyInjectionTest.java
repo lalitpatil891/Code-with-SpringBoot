@@ -10,9 +10,9 @@ public class DependencyInjectionTest {
 
         SeasonFinder season = (SeasonFinder) fac.getBean("cmonth");
 
-        String sea = season.showSeasonMessage("Lalit");
+        String currentSeason = season.showSeasonMessage("Lalit");
 
-        System.out.println(sea);
+        System.out.println(currentSeason);
 
         fac.close();
     }
