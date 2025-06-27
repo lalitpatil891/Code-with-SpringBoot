@@ -11,7 +11,7 @@ public class DependencyInjectionTest {
         SeasonFinder season = (SeasonFinder) fac.getBean("cmonth");
 
         String currentSeason = season.showSeasonMessage("Lalit");
-
+        // PRACTICE cOMMIT
         System.out.println(currentSeason);
 
         fac.close();
