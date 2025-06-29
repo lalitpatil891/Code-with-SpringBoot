@@ -8,14 +8,13 @@
 	<!-- Address bean -->
 	<bean id="addr" class="com.example.beans.Address">
 		<property name= "city" value ="Mumbai"/>
-	</bean>
+	</bean>	
 	
 	<!-- Student bean with multiple properties, collection and inner bean-->	
-  	<bean id="sname" class="com.example.beans.Student" init-method ="init" destroy-method="destroy">
+  	<bean id="stud" class="com.example.beans.Student" init-method ="init" destroy-method="destroy">
   		<property name="name" value ="Lalit" />
   		<property name="rollNo" value ="246" />
-  		<property name="subjects" value ="Lal" />
-  		<property name="name">
+  		<property name="subjects">
   			<list>
   				<value>Math</value>
   				<value>English</value>
@@ -23,5 +22,5 @@
   			</list>
   		</property>
   		<property name="address" ref="addr"/>
-  	</bean>  	
+  	</bean>  
 </beans>
