@@ -1,122 +1,135 @@
-# 🌦️ Season Finder - Spring Dependency Injection Example (XML Based)
+# 🌱 Spring Dependency Injection Example - Season Finder
 
-This is a simple Java project demonstrating **Spring Framework's Dependency Injection (DI)** using an XML configuration file. It determines the **season** (Winter, Summer, or Rainy) based on the current month using the `java.time.LocalDate` class.
+This simple Spring application demonstrates **Dependency Injection (DI)** and **Inversion of Control (IoC)** using XML configuration.
+
+The project:
+- Finds the current month
+- Decides the season based on that month
+- Shows a friendly message to the user
 
 ---
 
-## 📁 Project Structure
-
-```
-
-src/
-├── com/
-│   └── nit/
-│       ├── main/
-│       │   └── DependencyInjectionTest.java
-│       └── sbeans/
-│           └── SeasonFinder.java
-└── com/
-└── nit/
-└── cfgs/
-└── applicationContext.xml
-
+## 📦 **Project Structure**
+```plaintext
+com.nit.sbeans.SeasonFinder            # Bean that finds season
+com.nit.main.DependencyInjectionTest   # Main class to run the program
+com/nit/cfgs/applicationContext.xml    # Spring configuration file
 ````
 
 ---
 
-## 🚀 How It Works
+## ⚙️ **How It Works (Explanation)**
 
-### ➤ XML Configuration (`applicationContext.xml`)
+1. Spring reads the XML config: `applicationContext.xml`.
 
-- A bean of `java.time.LocalDate` is created using the factory method `now()` to inject the current date.
-- The `SeasonFinder` bean is created and injected with this date via setter injection.
+2. Creates a bean `ltime`:
 
-```xml
-<bean id="ltime" class="java.time.LocalDate" factory-method="now" />
-<bean id="cmonth" class="com.nit.sbeans.SeasonFinder">
-    <property name="month" ref="ltime" />
-</bean>
-````
+   ```xml
+   <bean id="ltime" class="java.time.LocalDate" factory-method="now" />
+   ```
+
+   → This creates the current date using `LocalDate.now()`.
+
+3. Creates a bean `cmonth` (of type `SeasonFinder`) and injects the date:
+
+   ```xml
+   <bean id="cmonth" class="com.nit.sbeans.SeasonFinder">
+       <property name="month" ref="ltime" />
+   </bean>
+   ```
+
+   → Spring calls the setter `setMonth(LocalDate month)` and injects `ltime`.
+
+4. The main program (`DependencyInjectionTest`) loads Spring context, gets the `SeasonFinder` bean, and calls:
+
+   ```java
+   season.showSeasonMessage("Lalit")
+   ```
+
+   → Returns a message with season and month.
 
 ---
 
-### ➤ Java Bean (`SeasonFinder.java`)
+## 🧩 **What is Dependency Injection?**
 
-* Accepts a `LocalDate` instance injected by Spring.
-* Extracts the current month and returns a message describing the **season**.
+Instead of creating the date inside the `SeasonFinder` class (e.g., `LocalDate.now()`),
+we ask Spring to create it **outside** and provide (inject) it via the setter.
 
-```java
-public String showSeasonMessage(String user) {
-    int currMonth = getMonth();
+✅ This is called:
 
-    if ((currMonth >= 11 && currMonth <= 12) || (currMonth >= 1 && currMonth <= 2)) {
-        return "Hey " + user + ", Season: Winter, Month: " + currMonth;
-    } else if (currMonth >= 3 && currMonth <= 6) {
-        return "Hey " + user + ", Season: Summer, Month: " + currMonth;
-    } else if (currMonth >= 7 && currMonth <= 10) {
-        return "Hey " + user + ", Season: Rainy, Month: " + currMonth;
-    } else {
-        return "Hey " + user + ", Invalid Month!";
-    }
-}
+* **Dependency Injection (DI):** dependencies are given to the object instead of the object creating them.
+* **Inversion of Control (IoC):** control of object creation and wiring is inverted to the container (Spring).
+
+---
+
+## 📊 **Visual Flow (Text Diagram)**
+
+```plaintext
++--------------------------------------------------+
+|               applicationContext.xml             |
++--------------------------------------------------+
+| <bean id="ltime"                                 |
+|       class="java.time.LocalDate"                |
+|       factory-method="now" />                     |
+|                                                  |
+| <bean id="cmonth"                                |
+|       class="com.nit.sbeans.SeasonFinder">       |
+|    <property name="month" ref="ltime" />         |
+| </bean>                                          |
++--------------------------------------------------+
+
+           |
+           | Spring reads config & creates beans
+           v
+
++-----------------------------------+
+| Spring IoC Container              |
++-----------------------------------+
+| Creates 'ltime' (LocalDate.now()) |
+| Creates 'cmonth' (SeasonFinder)   |
+| Calls setMonth(ltime)             |
++-----------------------------------+
+
+           |
+           | Application runs
+           v
+
++---------------------------------------------+
+| DependencyInjectionTest (main method)       |
++---------------------------------------------+
+| Loads Spring context                        |
+| Gets SeasonFinder bean                      |
+| Calls showSeasonMessage("Lalit")            |
+| Prints: Hey Lalit, Season: Summer, Month: 6 |
++---------------------------------------------+
 ```
 
 ---
 
-### ➤ Main Class (`DependencyInjectionTest.java`)
+## ▶ **Execution Flow**
 
-* Loads the Spring container from XML.
-* Retrieves the `SeasonFinder` bean.
-* Calls `showSeasonMessage("Lalit")` and prints the result.
+1. Run `DependencyInjectionTest`.
+2. Spring loads config and creates beans.
+3. Injects `LocalDate` into `SeasonFinder`.
+4. Call method to get message.
+5. Print message to console.
 
-```java
-SeasonFinder season = (SeasonFinder) fac.getBean("cmonth");
-String sea = season.showSeasonMessage("Lalit");
-System.out.println(sea);
+---
+
+## ✅ **Result (Example)**
+
+```plaintext
+Hey Lalit, Season: Summer, Month: 6
 ```
 
 ---
 
-## 💡 Key Concepts Used
+## ✏ **Why Use DI?**
 
-* ✅ Spring Core - Bean Configuration using XML
-* ✅ Factory Method for Date Injection (`LocalDate.now()`)
-* ✅ Setter-based Dependency Injection
-* ✅ Java 8+ `LocalDate` for current date
-* ✅ Seasonal Logic using if-else blocks
+* Makes code cleaner & easier to test.
+* `SeasonFinder` does **not care** how to get the current date.
+* We can easily change the date source in config (e.g., fixed date for testing).
 
 ---
 
-## 🧪 Output Example
-
-```
-Hey Lalit, Season: Rainy, Month: 6
-```
-
-*(Output depends on current month when you run the program)*
-
----
-
-## 📦 Requirements
-
-* Java 8 or above
-* Spring Framework (Core JARs)
-* IDE like Eclipse / IntelliJ or simple terminal
-
----
-
-## 📌 Notes
-
-* This project uses **manual XML configuration**. In real-world Spring Boot projects, this is typically replaced by annotations (`@Component`, `@Autowired`) and Java-based config.
-* Still, this is a great way to understand the **Spring IoC (Inversion of Control) Container** and how it manages object creation and wiring.
-
----
-
-## 🙋 Author
-
-**Lalit Patil**
-Java Full Stack Developer
-📬 [lalitpatil8901@gmail.com](mailto:lalitpatil8901@gmail.com)
-🔗 [Portfolio](https://lalitpatil891.github.io/LalitPortfolio/) | [GitHub](https://github.com/lalitpatil891)
-
----
+> 📌 This project is a good starting point to learn how Spring handles bean creation and wiring using XML.
