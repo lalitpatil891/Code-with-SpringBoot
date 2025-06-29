@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           https://www.springframework.org/schema/beans/spring-beans.xsd">
+  		
+	<!-- Address bean -->
+	<bean id="addr" class="com.example.beans.Address">
+		<property name= "city" value ="Mumbai"/>
+	</bean>
+	
+	<!-- Student bean with multiple properties, collection and inner bean-->	
+  	<bean id="sname" class="com.example.beans.Student" init-method ="init" destroy-method="destroy">
+  		<property name="name" value ="Lalit" />
+  		<property name="rollNo" value ="246" />
+  		<property name="subjects" value ="Lal" />
+  		<property name="name">
+  			<list>
+  				<value>Math</value>
+  				<value>English</value>
+  				<value>Science</value>
+  			</list>
+  		</property>
+  		<property name="address" ref="addr"/>
+  	</bean>  	
+</beans>
