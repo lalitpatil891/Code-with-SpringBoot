@@ -1,7 +1,7 @@
 package com.example.beans;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.LocalDate;
 
 public class WishMessageGenerator {
 

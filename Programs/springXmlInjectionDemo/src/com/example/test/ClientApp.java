@@ -13,7 +13,7 @@ public class ClientApp {
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
 
 		// get the target bean
-		WishMessageGenerator generator = ctx.getBean("WishBean", WishMessageGenerator.class);
+		WishMessageGenerator generator = ctx.getBean("wishBean", WishMessageGenerator.class);
 
 		// Called Method
 		String msg = generator.generateWish("Lalit");
