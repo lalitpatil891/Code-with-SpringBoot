@@ -1,7 +1,3 @@
-Here’s a **README.md** file you can use for your project, written clearly and professionally in Markdown:
-
----
-
 ## 📦 Spring Cyclic Dependency Injection Example (Setter Injection)
 
 This project demonstrates how **Spring Framework** handles **cyclic (circular) dependency injection** using **setter injection**.
@@ -79,18 +75,6 @@ IOCProj03-cyclcDI-SetterInjection/
 
 ---
 
-### 🛠 How to Disable Block Comment Formatting in Eclipse
-
-If multiline comments disturb code formatting:
-
-1. Go to `Window` → `Preferences`
-2. Search: `formatter` → `Java` → `Code Style` → `Formatter`
-3. Create or edit a profile
-4. Go to `Comments`
-5. Uncheck **Enable block comment formatting**
-
----
-
 ### ✅ Output
 
 You will see console output showing:
@@ -98,11 +82,3 @@ You will see console output showing:
 * Default constructors called
 * Setter methods called
 * Final output showing the `toString()` of beans
-
----
-
-### 📝 Commit messages suggestions
-
-* `feat: add cyclic dependency example with setter injection`
-* `docs: add README explaining cyclic dependency handling`
-* `config: add Spring XML config for cyclic dependencies`
