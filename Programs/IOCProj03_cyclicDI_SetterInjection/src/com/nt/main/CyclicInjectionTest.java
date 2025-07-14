@@ -15,11 +15,13 @@ public class CyclicInjectionTest {
 		
 		//get Class beans
 		A a = (A) ctx.getBean("a1");
+		
 		System.out.println("A: "+a);
 		
 		System.out.println("=====================");
 		
 		B b = (B)ctx.getBean("b1");
+		
 		System.out.println("B: "+b);
 		
 		
