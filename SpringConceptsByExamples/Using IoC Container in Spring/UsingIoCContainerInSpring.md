@@ -3,88 +3,99 @@
 ---
 
 **What is IoC (Inversion of Control)?**
-Inversion of Control means the control of creating and managing objects is given to the Spring framework, not written manually in our code.
-Spring uses IoC containers to manage these objects, called beans.
+Inversion of Control means giving control of object creation and wiring to the Spring framework.
+
+Example without Spring:
+
+```
+A a = new A();
+B b = new B(a);
+```
+
+With Spring, objects are created and injected automatically by the container.
 
 ---
 
 **Why IoC Container?**
 
-* Automatically manages bean creation and lifecycle
-* Handles dependency injection (DI)
-* Helps decouple code, making it easier to test and maintain
+* Manages beans and their dependencies automatically
+* Reduces manual new object creation
+* Makes code loosely coupled and easier to test
 
 ---
 
 **Types of IoC Containers in Spring**
 
-* BeanFactory: Basic container; lazy initialization; fewer features
-* ApplicationContext: Advanced container; eager initialization; supports:
+* BeanFactory: Basic container
+* ApplicationContext: Advanced container
 
-  * Event handling
-  * Internationalization
-  * Bean post-processors and more
+Example:
 
-In most real projects, ApplicationContext is preferred.
+```
+BeanFactory factory = new XmlBeanFactory(new FileSystemResource("beans.xml"));
+ApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
+```
 
 ---
 
 **Different Ways to Create ApplicationContext**
 
-1. ClassPathXmlApplicationContext
-   Loads configuration XML file from classpath.
+**1. ClassPathXmlApplicationContext**
+Loads config from classpath.
 
-   ```
-   ApplicationContext ctx = new ClassPathXmlApplicationContext("com/nit/config/ApplicationContext.xml");
-   ```
+```
+ApplicationContext ctx = new ClassPathXmlApplicationContext("com/nit/config/ApplicationContext.xml");
+```
 
-2. FileSystemXmlApplicationContext
-   Loads XML from absolute or relative filesystem path.
+**2. FileSystemXmlApplicationContext**
+Loads from filesystem path.
 
-   ```
-   ApplicationContext ctx = new FileSystemXmlApplicationContext("src/com/nit/config/ApplicationContext.xml");
-   ```
+```
+ApplicationContext ctx = new FileSystemXmlApplicationContext("src/com/nit/config/ApplicationContext.xml");
+```
 
-3. AnnotationConfigApplicationContext
-   Used for Java-based configuration using annotations like @Configuration.
+**3. AnnotationConfigApplicationContext**
+Used for Java-based configuration.
 
-   ```
-   ApplicationContext ctx = new AnnotationConfigApplicationContext(MyConfigClass.class);
-   ```
+```
+@Configuration
+public class AppConfig {
+    @Bean
+    public A a() { return new A(); }
+}
+
+ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
+```
 
 ---
 
 **AutoCloseable and try-with-resources**
-
-* ApplicationContext implementations like FileSystemXmlApplicationContext are AutoCloseable.
-* Using them inside try-with-resources block automatically closes the container:
+Since some ApplicationContext implementations implement AutoCloseable, use:
 
 ```
 try (FileSystemXmlApplicationContext ctx = new FileSystemXmlApplicationContext("src/com/nit/config/ApplicationContext.xml")) {
     // use ctx
 }
-// ctx is closed automatically here
+// ctx closed automatically
 ```
 
 ---
 
 **How to Get Beans from IoC Container**
 
-Different ways to fetch beans after context is created:
-
-* By id/name with type casting
+**By id with casting**
 
 ```
 A a = (A) ctx.getBean("a1");
 ```
 
-* By id/name with generic
+**By id with type**
 
 ```
 A a = ctx.getBean("a1", A.class);
 ```
 
-* By type only
+**By type only**
 
 ```
 A a = ctx.getBean(A.class);
@@ -94,51 +105,58 @@ A a = ctx.getBean(A.class);
 
 **Notes about getBean()**
 
-* Returns existing singleton bean object (by default scope).
-* Generic getBean(id, class) is type-safe and avoids ClassCastException.
-* If bean id is wrong, Spring throws NoSuchBeanDefinitionException.
+* Returns bean instance managed by Spring.
+* Type-safe methods with generics help avoid ClassCastException.
+* Throws NoSuchBeanDefinitionException if id or type is wrong.
 
 ---
 
 **Commonly Used ApplicationContext Implementations**
 
-* ClassPathXmlApplicationContext: loads from classpath
-* FileSystemXmlApplicationContext: loads from filesystem
-* AnnotationConfigApplicationContext: for Java config
-* WebApplicationContext: for web apps
+* ClassPathXmlApplicationContext
+* FileSystemXmlApplicationContext
+* AnnotationConfigApplicationContext
+* WebApplicationContext
+
+Example:
+
+```
+ApplicationContext ctx = new AnnotationConfigApplicationContext(MyConfig.class);
+```
 
 ---
 
 **Advantages of ApplicationContext over BeanFactory**
 
-* Supports internationalization (i18n)
-* Supports event propagation (publish/subscribe)
-* Supports declarative mechanisms like BeanPostProcessor and BeanFactoryPostProcessor
-* Creates singleton beans at container startup (eager initialization), making errors visible earlier
+* Supports bean post-processing
+* Supports event publishing
+* Supports i18n (messages)
+* Eager initialization of singleton beans
+
+Example:
+
+```
+ApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
+```
 
 ---
 
 **When to Use Which**
 
-* For simple projects or learning: ClassPathXmlApplicationContext
-* For file-system-based configs: FileSystemXmlApplicationContext
-* For Java config with annotations: AnnotationConfigApplicationContext
-* Avoid BeanFactory unless working on low-level resource-constrained apps
+* ClassPathXmlApplicationContext: config inside classpath
+* FileSystemXmlApplicationContext: config outside classpath
+* AnnotationConfigApplicationContext: Java @Configuration classes
 
 ---
 
 **Important Points to Remember**
-\=> IoC container manages object creation, configuration, and wiring.
-\=> ApplicationContext is most commonly used in real projects.
-\=> Use type-safe getBean methods to avoid casting issues.
-\=> Use try-with-resources to auto-close the container.
-\=> Default bean scope is singleton; multiple calls to getBean() return same object.
-\=> ApplicationContext creates singleton beans eagerly; BeanFactory creates lazily.
+\=> IoC container manages creation, wiring, and lifecycle.
+\=> Prefer ApplicationContext in most projects.
+\=> Use generic getBean() to avoid casting.
+\=> Default bean scope is singleton.
+\=> try-with-resources auto-closes container.
 
 ---
 
 **Summary**
-
-* Spring IoC Container helps manage beans and dependencies.
-* ApplicationContext is powerful and feature-rich.
-* Helps create maintainable, decoupled, and testable applications.
+Spring IoC container makes code simpler, testable, and decoupled by taking over bean management.
