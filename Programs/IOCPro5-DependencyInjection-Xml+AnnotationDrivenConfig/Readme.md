@@ -93,7 +93,7 @@ public class MainApp {
 
 ## 🖼 **Diagram / Notes**
 
-!\[Spring App using xml+annotation]\(https://github.com/lalitpatil891/Code-with-SpringBoot/blob/main/SBMS/SpringCore/NTSPBMS718-%20Session11-Spring%20App%20development%20using%20xml%2Bannotation%20driven%20cfgs%20.png)
+![Spring App using xml+annotation](https://github.com/lalitpatil891/Code-with-SpringBoot/blob/main/SBMS/SpringCore/NTSPBMS718-%20Session11-Spring%20App%20development%20using%20xml%2Bannotation%20driven%20cfgs%20.png)
 
 *(Make sure the image is placed in your project root or adjust the path.)*
 
