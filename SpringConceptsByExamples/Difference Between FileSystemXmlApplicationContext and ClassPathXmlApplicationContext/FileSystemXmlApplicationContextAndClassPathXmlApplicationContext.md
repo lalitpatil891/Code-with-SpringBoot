@@ -47,6 +47,9 @@ ClassPathXmlApplicationContext ctx =
 
 * By default, the `src` folder is included in the build path.
 * So `com/nt/cfgs/applicationContext.xml` inside `src` is already in the classpath.
+* If you make own package then fallow this technique->
+First add com/example/config folder or package to CLASSPATH/BUILDPATH of the eclipse project [right click on com/exaple/config folder/package -->buildpath -->Use as a source ]
+
 * Best practice: keep Spring config files in `src` or in a folder/package added to the classpath.
 
 ---
