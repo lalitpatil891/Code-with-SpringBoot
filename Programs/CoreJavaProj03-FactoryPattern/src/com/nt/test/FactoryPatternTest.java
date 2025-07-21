@@ -31,3 +31,17 @@ public class FactoryPatternTest {
 		bike3.drive();
 	}
 }
+
+/*
+
+Output
+------
+StandardBike.drive():: driving StandardBike (Bajaj Discover)
+=============================
+SportsBike.drive()::Driving SportsBike (Kawasaki - Ninja)
+=============================
+ElectricBike.drive():: Driving ElectricBike (Ather Bike)
+=============================
+BulletBike.drive():: driving BulletBike (Royal Enfield - Bullet)
+
+*/
