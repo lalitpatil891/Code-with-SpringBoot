@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component("wf")
 public class WeekDayFinder {
-	@Qualifier("ldate1")
+	//@Qualifier("ldate1") 
 	@Autowired //Field Injection
 	private LocalDate date;
 
