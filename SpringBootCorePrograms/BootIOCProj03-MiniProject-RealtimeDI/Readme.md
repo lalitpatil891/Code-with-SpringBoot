@@ -51,11 +51,11 @@ Here are the sample outputs after running the project:
 
 ### 1. Console Input and Output
 
-![Console Output 1](/img/console-output-1.png)
+![Console Output 1](./img/console-output-1.png)
 
 ### 2. Output When Employees Are Found
 
-![Console Output 2](/img/console-output-2.png)
+![Console Output 2](./img/console-output-2.png)
 
 
 ---
