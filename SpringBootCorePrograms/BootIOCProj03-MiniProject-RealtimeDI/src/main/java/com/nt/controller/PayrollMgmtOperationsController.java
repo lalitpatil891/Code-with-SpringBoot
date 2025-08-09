@@ -18,10 +18,13 @@ public class PayrollMgmtOperationsController {
 		
 		//use Service 
 		List<Employee> list = empService.fetchEmployeesByDesgs(desg1, desg2, desg3);
-		
-		
-		
 		return list;
 	}
 	
+	
+	public String appointEmployee(Employee emp)throws Exception{
+		//use service
+		String msg = empService.registerEmployee(emp);
+		return msg;
+	}
 }

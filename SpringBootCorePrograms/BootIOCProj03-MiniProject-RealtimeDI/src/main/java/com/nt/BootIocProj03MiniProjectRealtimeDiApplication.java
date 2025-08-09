@@ -55,5 +55,4 @@ public class BootIocProj03MiniProjectRealtimeDiApplication {
 		//close the IOC container
 		((ConfigurableApplicationContext)ctx).close();
 	}
-
 }

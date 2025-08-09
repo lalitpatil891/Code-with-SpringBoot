@@ -22,7 +22,10 @@ public class EmployeeDAOImpl implements IEmployeeDAO {
 
 	// SQL Query
 	private static final String GET_EMPS_QUERY = "SELECT EMPNO,ENAME,JOB,SAL,DEPTNO FROM EMP WHERE JOB IN(?,?,?) ORDER BY JOB";
-
+	
+	private static final String INSERT_EMP_QUERY = "INSERT INTO EMP(EMPNO,ENAME,JOB,SAL,DEPTNO) VALUES(EMP_ID_SEQ.NEXTVAL,?,?,?,?)";
+	
+	
 	@Override
 	public List<Employee> showEmployeeByDesgs(String desg1, String desg2, String desg3) throws Exception {
 		List<Employee> list = null;
@@ -60,6 +63,39 @@ public class EmployeeDAOImpl implements IEmployeeDAO {
 		}
 
 		return list; // ✅ Return the result
+	}
+	
+	//===============Data Insert Operation-====================
+	@Override
+	public int insertEmployee(Employee emp) throws Exception {
+		//get pooled jdbc con object
+		try(
+				Connection con = ds.getConnection();
+				//create prepared Statement object
+				PreparedStatement ps1 = con.prepareStatement(INSERT_EMP_QUERY); 
+			){
+			
+			// set values to query params
+			ps1.setString(1, emp.getEname());
+			ps1.setString(2, emp.getJob());
+			ps1.setDouble(3, emp.getSalary());
+			ps1.setInt(4, emp.getDeptno());
+			
+			
+			//execute the SQL query
+			int count = ps1.executeUpdate();
+			
+			return count;
+			
+		}//try
+		catch(SQLException se) {
+			throw se;
+		}
+		catch(Exception e) {
+			throw e;
+		}
+		
+	
 	}
 
 }
