@@ -23,7 +23,9 @@ public class EmployeeDAOImpl implements IEmployeeDAO {
 	// SQL Query
 	private static final String GET_EMPS_QUERY = "SELECT EMPNO,ENAME,JOB,SAL,DEPTNO FROM EMP WHERE JOB IN(?,?,?) ORDER BY JOB";
 	
-	private static final String INSERT_EMP_QUERY = "INSERT INTO EMP(EMPNO,ENAME,JOB,SAL,DEPTNO) VALUES(EMP_ID_SEQ.NEXTVAL,?,?,?,?)";
+	//private static final String INSERT_EMP_QUERY = "INSERT INTO EMP(EMPNO,ENAME,JOB,SAL,DEPTNO) VALUES(EMP_ID_SEQ.NEXTVAL,?,?,?,?)";
+	
+	private static final String INSERT_EMP_QUERY = "INSERT INTO EMP (ENAME, JOB, SAL, DEPTNO) VALUES (?, ?, ?, ?)";
 	
 	
 	@Override
