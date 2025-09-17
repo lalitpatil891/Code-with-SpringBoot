@@ -1,0 +1,34 @@
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!-- bean definitions here -->
+    <bean id="dev" class="com.lp.Dev">
+        <constructor-arg ref="lap1"/>       <!--Constructor Injection using ref -->
+
+        <property name="Laptop" ref="lap1"/>  <!--Setter Injection-->
+        <property name="age" value="21"/>     <!--Setter Injection-->
+    </bean>
+
+    <bean id="lap1" class="com.lp.Laptop">
+        <property name="name" value="Lalit"/>
+    </bean>
+
+
+
+
+
+
+    <!--    &lt;!&ndash; bean definitions here &ndash;&gt;-->
+<!--    <bean id="dev" class="com.lp.Dev">-->
+<!--        <property name="age" value="12"/>                   &lt;!&ndash;Setter Injection&ndash;&gt;-->
+<!--    </bean>-->
+
+<!--    <bean id="lap" class="com.lp.Laptop">-->
+<!--        <constructor-arg  name="age" value="30" />           &lt;!&ndash;Constructor Injection&ndash;&gt;-->
+<!--    </bean>-->
+
+</beans>
