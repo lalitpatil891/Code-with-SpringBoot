@@ -1,3 +1,0 @@
-Output
-
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'b1' defined in file [D:\@Java Placement Course\Spring Boot & Microservices\Code-with-SpringBoot\Programs\IOCProj4-cyclicDI-ConstructorInjection\src\com\nit\config\ApplicationContext.xml]: Cannot resolve reference to bean 'a1' while setting constructor argument
