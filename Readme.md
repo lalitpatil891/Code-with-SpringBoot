@@ -5,23 +5,6 @@ This repo includes structured **daily notes**, **practice tasks**, and **mini pr
 
 ---
 
-## 📅 Daily Logs
-
-All topics are organized by day for easy tracking:
-
-```
-
-📁 Day01 - Spring Boot Intro & Setup
-📁 Day02 - REST API & Controller
-📁 Day03 - Service Layer & DI
-📁 Day04 - CRUD with Spring Data JPA
-📁 Day05 - Exception Handling
-...
-
-````
-
----
-
 ## 📚 What You’ll Find
 
 - ✅ Spring Boot setup & configuration  
@@ -67,8 +50,7 @@ Feel free to **fork**, **star**, or refer to this repo!
 I’m an aspiring backend developer learning Java + Spring Boot stack.
 
 * 📧 Email: [lalitpatil8901@gmail.com](mailto:lalitpatil8901@gmail.com)
-* 💼 LinkedIn: [Your LinkedIn]()
-* 🌐 Portfolio: [your-portfolio.com]https://lalitpatil891.github.io/MyPortfolio/)
+
 
 ---
 
