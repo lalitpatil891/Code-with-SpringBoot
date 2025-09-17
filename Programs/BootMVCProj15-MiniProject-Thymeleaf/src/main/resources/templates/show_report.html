@@ -1,0 +1,38 @@
+<html  xmlns:th="http://www.thymeleaf.org">
+
+<h1  style="color:red;text-align:center"> report page </h1>
+
+<div  th:if="${!listVO.empty}">
+  <table border="1" bgcolor="yellow" align="center"> 
+    <tr  bgcolor="cyan">
+      <th> aid </th>
+      <th> aname </th>
+      <th> addrs </th>
+      <th> category </th>
+      <th> fee </th>
+      <th> operations </th>
+    </tr>
+    
+       <tr  th:each="vo:${listVO}"  >
+         <td><span th:text="${vo.aid}"/></td>
+         <td><span  th:text="${vo.aname}"/></td>
+         <td><span  th:text="${vo.addrs}"/></td>
+         <td><span  th:text="${vo.category}"/></td>
+         <td><span  th:text="${vo.fee}"/></td>
+         <td> <a th:href="@{/actor-api/edit(no=${vo.aid})}"><img th:src="@{/images/edit.jpg}" width="30" height="30">
+                    &nbsp; &nbsp;&nbsp;&nbsp;
+                    <a th:href="@{/actor-api/remove(no=${vo.aid})}"  onclick="return confirm('Do u want to delete ?')"><img th:src="@{/images/delete.jpg}" width="30" height="30">
+                    </a>  </td>
+       </tr>
+  </table>
+  </div>
+ <div  th:if="${listVO.empty}">
+               <h1  style="color:red;text-align:center">Records  not found </h1>
+ </div>
+ <br> <h1 style="color:green;text-align:center;text-decoration:blink"   th:text="${resultMsg}" />   <br><br>
+ <h1  style="text-align:center"><a th:href="@{/actor-api/register}"><img th:src="@{/images/add.jpg}" width="40" height="60"/> Add Actor</a></h1>
+ 
+ <br><br>
+ 
+ <h1  style="text-align:center"><a th:href="@{/actor-api/}"><img th:src="@{/images/home.jpg}"></a></h1>
+ 

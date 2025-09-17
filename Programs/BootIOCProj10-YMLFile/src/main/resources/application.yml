@@ -1,0 +1,41 @@
+# Conversion to YAML from Properties formar report
+# Warnings:
+# - The yaml file had comments which are lost in the refactoring!
+spring:
+  application:
+    name: BootIOCProj09-ConfiurationProperties
+org:
+  hcl:
+    id: 1001
+    name: raja
+    addrs: hyd
+    billamt: 54545.0
+    favColors:
+    - red
+    - green
+    - maroon
+    friends:
+    - raja
+    - rani
+    - suresh
+    phoneNumbers: 999999,8888888,7777777
+    phone-numbers:
+    - 99999991
+    - 88888881
+    - 77777771
+    id-details:
+      aadhar: 4535555AFA545
+    idDetails:
+      pan: 5446676767
+      license: 4567767333
+    academics:
+      10th: DPS
+      10+2: Chaitnya
+      graduation: CBIET
+    company:
+      id: 1345454
+      name: HCL
+      size: 1000
+      location: hyd
+cust:
+  amt: 98990.0

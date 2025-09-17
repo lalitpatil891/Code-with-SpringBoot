@@ -1,0 +1,30 @@
+<html  xmlns:th="http://www.thymeleaf.org">
+
+
+<h1  style="color:red;text-align:center"> Actor Registration Page </h1>
+
+<form th:action="@{/actor-api/register}"  method="POST" th:object="${actor}">
+  <table   bgcolor="cyan"  align="center">
+     <tr>
+       <th> Actor Name:: </th>
+       <th>  <input type="text"  th:field="*{aname}"/> </th>
+     </tr>
+     <tr>
+       <th> Actor Address:: </th>
+       <th>  <input type="text"  th:field="*{addrs}"/> </th>
+     </tr>
+     <tr>
+       <th> Actor Catetory:: </th>
+       <th>  <input type="text"  th:field="*{category}"/> </th>
+     </tr>
+     <tr>
+       <th> Actor Fee:: </th>
+       <th>  <input type="text"  th:field="*{fee}"/> </th>
+     </tr>
+     <tr>
+        <th> <input type="submit"  value="register"> </th>
+        <th> <input type="reset"  value="cancel"> </th>
+     </tr>
+     </table>
+
+</form>
