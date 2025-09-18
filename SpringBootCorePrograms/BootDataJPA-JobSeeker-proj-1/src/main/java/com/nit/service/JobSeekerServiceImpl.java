@@ -14,7 +14,7 @@ public class JobSeekerServiceImpl implements IJobSeekerService {
 	
     @Override
     public String registerJobSeeker(JobSeeker js) {
-        JobSeeker jobSeeker = repo.save(js);
-        return "JobSeeker obj is saved with id value " + jobSeeker.getJobId();
+        return "JobSeeker obj is saved with id value " + repo.save(js).getJobId();
     }
+
 }

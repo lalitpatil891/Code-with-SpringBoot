@@ -14,8 +14,13 @@ import lombok.Data;
 public class JobSeeker {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // mysql
 	private Integer jobId;
+
+	
+//	@Id
+//	@GeneratedValue(strategy=GenerationType.SEQUENCE) //for Oracle or postgress
+//	private Integer jobId;
 	
 	@Column(name="JS_NAME", length=30)
 	private String name;
@@ -25,4 +30,6 @@ public class JobSeeker {
 	private String qlfy; 
 	@Column(name="JS_EXP_SALARY")
 	private Double expSalary;
+	
+	
 }
