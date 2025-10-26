@@ -2,31 +2,38 @@ package com.bookstore.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="books")
-public class Book {
-	
+@Table(name = "my-books")
+public class MyBookList {
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String name;
-	private String author;  
+	private String author;
 	private double price;
 	
-	public Book() {
-		
+	public MyBookList() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
-	
-	public Book(int id, String name, String author, double price) {
+
+	public MyBookList(int id, String name, String author, double price) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.author = author;
 		this.price = price;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -41,14 +48,6 @@ public class Book {
 		return author;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public void setAuthor(String author) {
 		this.author = author;
 	}
@@ -60,6 +59,4 @@ public class Book {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-		
 }
- 
