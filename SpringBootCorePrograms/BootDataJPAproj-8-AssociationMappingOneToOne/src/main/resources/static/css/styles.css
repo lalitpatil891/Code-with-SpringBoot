@@ -1,0 +1,78 @@
+/* form.css - students/form.html साठी */
+body {
+    font-family: Inter, sans-serif;
+    background: linear-gradient(180deg, #f5f7fb 0%, #eef2ff 100%);
+    color: #111827;
+    padding: 32px;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 24px 32px;
+    box-shadow: 0 6px 18px rgba(15,23,42,0.08);
+    max-width: 500px;
+    width: 100%;
+    border: 1px solid #e6e9ef;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: 1.6rem;
+    color: #0f172a;
+}
+
+/* form fields */
+form label {
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
+    margin-bottom: 16px;
+    font-size: 0.95rem;
+}
+
+form input[type="text"] {
+    padding: 10px 14px;
+    margin-top: 6px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    font-size: 0.95rem;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+form input[type="text"]:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37,99,235,0.2);
+    outline: none;
+}
+
+/* submit button */
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #2563eb;
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.15s ease, transform 0.08s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #1e40af;
+    transform: translateY(-1px);
+}
+
+/* responsive */
+@media (max-width: 480px) {
+    body { padding: 16px; }
+    .container { padding: 20px; }
+    form label { font-size: 0.9rem; }
+    form input[type="text"] { font-size: 0.9rem; padding: 8px 12px; }
+    button[type="submit"] { font-size: 0.95rem; padding: 10px; }
+}

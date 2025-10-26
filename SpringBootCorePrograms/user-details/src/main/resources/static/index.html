@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>User Registration</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<h2>Register User</h2>
+	<form id="userForm">
+		<label for="userName">User Name:</label> <input type="text"
+			id="userName" name="userName" required> <label for="phoneNo">User
+			Phone No:</label> <input type="Number" id="phoneNo" name="phoneNo" required>
+
+		<label for="birth">User Birth Date:</label> <input type="Date"
+			id="birth" name="birth" required>
+
+		<button type="submit">Register</button>
+	</form>
+
+	<p id="response"></p>
+
+	<script>
+        document.getElementById("userForm").addEventListener("submit", async function(e) {
+            e.preventDefault();
+            
+            const userName = document.getElementById("userName").value;
+            const phoneNo = document.getElementById("phoneNo").value;
+            const birth = document.getElementById("birth").value;
+
+            const response = await fetch("/api/user", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ userName: userName , phoneNo:phoneNo,birth:birth})
+            });
+
+            const text = await response.text();
+            document.getElementById("response").innerText = text;
+        });
+    </script>
+</body>
+</html>
