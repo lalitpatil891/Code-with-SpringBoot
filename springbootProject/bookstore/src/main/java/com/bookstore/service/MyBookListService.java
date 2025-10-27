@@ -22,4 +22,9 @@ public class MyBookListService {
 		public List<MyBookList> getAllMyBooks() {
 			return myBookRepo.findAll();
 		}
+		
+		public void deleteMyBook(int id) {
+	        myBookRepo.deleteById(id);
+	    }
+		
 }
