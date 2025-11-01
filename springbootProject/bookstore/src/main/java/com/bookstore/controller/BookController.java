@@ -3,6 +3,7 @@ package com.bookstore.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,15 +38,32 @@ public class BookController {
 		return "bookRegister";
 	}
 	
+	/*	@GetMapping("/available_books")
+		public ModelAndView getAllBooks() {
+			
+			List<Book> booklist = bookService.getAllBooks();
+			//ModelAndView m = new ModelAndView();
+			//m.setViewName("booklist");
+			//m.addObject("book", booklist)
+			return new ModelAndView("bookList","book", booklist ); 
+		}*/
+	
 	@GetMapping("/available_books")
-	public ModelAndView getAllBooks() {
-		
-		List<Book> booklist = bookService.getAllBooks();
-		//ModelAndView m = new ModelAndView();
-		//m.setViewName("booklist");
-		//m.addObject("book", booklist)
-		return new ModelAndView("bookList","book", booklist ); 
+	public String viewBooksPage(@RequestParam(defaultValue = "1") int page, Model model) {
+	    int pageSize = 5; // number of books per page
+
+	    Page<Book> bookPage = bookService.findPaginated(page, pageSize);
+	    List<Book> listBooks = bookPage.getContent();
+
+	    model.addAttribute("currentPage", page);
+	    model.addAttribute("totalPages", bookPage.getTotalPages());
+	    model.addAttribute("totalItems", bookPage.getTotalElements());
+	    model.addAttribute("book", listBooks);
+
+	    return "bookList";
 	}
+
+	
 	
 	@PostMapping("/save")
 	public String addBook(@ModelAttribute Book book) {
@@ -62,12 +80,29 @@ public class BookController {
 	    return "redirect:/available_books";
 	}*/
 	
-	@GetMapping("/my_books")
+	/*@GetMapping("/my_books")
 	public String getMyBooks(Model model) {
 		List<MyBookList> list = myBookService.getAllMyBooks();
 		model.addAttribute("book", list);
 		return "myBooks";
+	}*/
+	
+	@GetMapping("/my_books")
+	public String getMyBooks(
+	        @RequestParam(defaultValue = "1") int page,
+	        Model model) {
+
+	    int pageSize = 5; // number of books per page
+	    Page<MyBookList> bookPage = myBookService.getPaginatedMyBooks(page, pageSize);
+
+	    model.addAttribute("book", bookPage.getContent());
+	    model.addAttribute("currentPage", page);
+	    model.addAttribute("totalPages", bookPage.getTotalPages());
+
+	    return "myBooks";
 	}
+
+	
 	
 	@RequestMapping("/mylist/{id}")
 	public String getMyList(@PathVariable("id") int id) {

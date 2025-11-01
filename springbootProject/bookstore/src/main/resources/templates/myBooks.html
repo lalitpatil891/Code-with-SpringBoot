@@ -26,7 +26,7 @@
 	<!--- Include Header Fragment --->
 	<div th:replace="~{fragments/header :: header}"></div>
 
-		<h5 class="text-center m-4 sticky-top bg-light py-2"
+	<h5 class="text-center m-4 sticky-top bg-light py-2"
 		style="top: 70px; z-index: 1020;">My Books</h5>
 	<div class="container ">
 		<table class="table table-hover">
@@ -47,21 +47,45 @@
 					<td th:text="${b.name}"></td>
 					<td th:text="${b.author}"></td>
 					<td th:text="${b.price}"></td>
-					<td>
-						<a href="#" class="delete-icon" th:href="@{/deleteMyBook/{id}(id=${b.id})}">
-  							<i class="ri-delete-bin-6-line ri-lg"></i>
-						</a>
-						
-					</td>
+					<td><a href="#" class="delete-icon"
+						th:href="@{/deleteMyBook/{id}(id=${b.id})}"> <i
+							class="ri-delete-bin-6-line ri-lg"></i>
+					</a></td>
 				</tr>
 
 			</tbody>
 		</table>
 	</div>
 
+	<div class="pagination justify-content-center fixed-pagination">
+		<nav th:if="${totalPages > 1}">
+			<ul class="pagination">
+				<!-- Previous Button -->
+				<li class="page-item"
+					th:classappend="${currentPage == 1} ? 'disabled'"><a
+					class="page-link" th:href="@{/my_books(page=${currentPage - 1})}">Previous</a>
+				</li>
+
+				<!-- Page Numbers -->
+				<li class="page-item"
+					th:each="i : ${#numbers.sequence(1, totalPages)}"
+					th:classappend="${i == currentPage} ? 'active'"><a
+					class="page-link" th:href="@{/my_books(page=${i})}" th:text="${i}"></a>
+				</li>
+
+				<!-- Next Button -->
+				<li class="page-item"
+					th:classappend="${currentPage == totalPages} ? 'disabled'"><a
+					class="page-link" th:href="@{/my_books(page=${currentPage + 1})}">Next</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+
+
 	<!-- Footer -->
-	 <!-- Include footer fragment -->
-  		<div th:replace="~{fragments/footer :: footer}"></div>
+	<!-- Include footer fragment -->
+	<div th:replace="~{fragments/footer :: footer}"></div>
 
 	<!-- Bootstrap JS -->
 	<script

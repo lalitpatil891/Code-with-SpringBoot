@@ -1,8 +1,9 @@
 package com.bookstore.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.bookstore.entity.MyBookList;
@@ -19,9 +20,16 @@ public class MyBookListService {
 			myBookRepo.save(book);
 		}
 		
-		public List<MyBookList> getAllMyBooks() {
+		/*public List<MyBookList> getAllMyBooks() {
 			return myBookRepo.findAll();
+		}*/
+		
+
+		public Page<MyBookList> getPaginatedMyBooks(int page, int size) {
+		    Pageable pageable = PageRequest.of(page - 1, size);
+		    return myBookRepo.findAll(pageable);
 		}
+
 		
 		public void deleteMyBook(int id) {
 	        myBookRepo.deleteById(id);

@@ -3,10 +3,10 @@ package com.bookstore.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bookstore.entity.Book;
 import com.bookstore.repository.BookRepository;
@@ -36,5 +36,12 @@ public class BookService {
 	// New method for searching alphabet-wise
     public List<Book> searchBooksByStartingLetter(String query) {
         return bookRepo.findByNameStartingWithIgnoreCase(query);
+    }
+    
+    
+ // New method for pagination
+    public Page<Book> findPaginated(int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+        return bookRepo.findAll(pageable);
     }
 }
