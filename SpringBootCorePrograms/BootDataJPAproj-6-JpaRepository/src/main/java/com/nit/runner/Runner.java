@@ -54,14 +54,18 @@ public class Runner implements CommandLineRunner {
 		
 		System.out.println("______________________________");
 		Object obj = service.searchDoctorByNameDocName("raja");
-		Object data[] = (Object[]) obj;
 
-		for (Object o : data) {
-		    System.out.print(o + "  ");
+		if (obj != null) {
+		    Object data[] = (Object[]) obj;
+		    for (Object o : data) {
+		        System.out.print(o + "  ");
+		    }
+		    System.out.println();
+		    System.out.println("Result is ::" + Arrays.toString(data));
+		} else {
+		    System.out.println("❌ No doctor found with the given name!");
 		}
-		System.out.println();
 
-		System.out.println("Result is ::" + Arrays.toString(data));
 		System.out.println("______________________________");
 
 		String result = service.searchSpecilizationByName("raja");

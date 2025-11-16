@@ -51,10 +51,12 @@ public interface IDoctorRepo extends JpaRepository<Doctor, Integer> {
 	
 	
 	//Scalar Query giving single record multiple col values
-	@Query("SELECT docId, docName FROM Doctor WHERE docName =:name")
+	@Query("SELECT docid, docName FROM Doctor WHERE docName = :name")
 	public Object showDoctorDataByName(String name);
+
 	
-	//Scalar Query giving single record single col 
+	@Query("SELECT specialization FROM Doctor WHERE docName = :name")
 	public String showSpecializationByName(String name);
+
 	
 }
